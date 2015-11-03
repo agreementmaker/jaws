@@ -88,7 +88,7 @@ public abstract class MultipleLineLocator extends LineLocator {
 			throws IOException
 	{
 		//  Create a list for storing the results
-		ArrayList lineList = new ArrayList();
+		ArrayList<String> lineList = new ArrayList<>();
 		//  Get a matching line
 		String line = getLine(first);
 		//  If there was one, there may be others
