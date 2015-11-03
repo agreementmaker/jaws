@@ -28,8 +28,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.smu.tspell.wordnet.Synset;
-import edu.smu.tspell.wordnet.WordSense;
+import edu.smu.tspell.wordnet.api.Synset;
+import edu.smu.tspell.wordnet.api.WordSense;
 
 /**
  * Encapsulates a collection of relationships for a synset to other synsets.

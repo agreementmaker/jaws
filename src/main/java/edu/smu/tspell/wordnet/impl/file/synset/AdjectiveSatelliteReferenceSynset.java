@@ -24,11 +24,11 @@
  */
 package edu.smu.tspell.wordnet.impl.file.synset;
 
-import edu.smu.tspell.wordnet.AdjectiveSynset;
-import edu.smu.tspell.wordnet.AdjectiveSatelliteSynset;
-import edu.smu.tspell.wordnet.Synset;
-import edu.smu.tspell.wordnet.SynsetType;
-import edu.smu.tspell.wordnet.WordNetException;
+import edu.smu.tspell.wordnet.api.AdjectiveSynset;
+import edu.smu.tspell.wordnet.api.AdjectiveSatelliteSynset;
+import edu.smu.tspell.wordnet.api.Synset;
+import edu.smu.tspell.wordnet.api.SynsetType;
+import edu.smu.tspell.wordnet.api.WordNetException;
 
 import edu.smu.tspell.wordnet.impl.file.RelationshipPointers;
 import edu.smu.tspell.wordnet.impl.file.RetrievalException;

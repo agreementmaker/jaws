@@ -24,9 +24,9 @@
  */
 package edu.smu.tspell.wordnet.impl.file;
 
-import edu.smu.tspell.wordnet.Synset;
-import edu.smu.tspell.wordnet.SynsetType;
-import edu.smu.tspell.wordnet.WordNetException;
+import edu.smu.tspell.wordnet.api.Synset;
+import edu.smu.tspell.wordnet.api.SynsetType;
+import edu.smu.tspell.wordnet.api.WordNetException;
 
 import java.util.ArrayList;
 import java.util.Arrays;

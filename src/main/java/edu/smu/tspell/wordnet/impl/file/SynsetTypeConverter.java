@@ -24,7 +24,7 @@
  */
 package edu.smu.tspell.wordnet.impl.file;
 
-import edu.smu.tspell.wordnet.SynsetType;
+import edu.smu.tspell.wordnet.api.SynsetType;
 
 /**
  * Converts values from database files into the corresponding synset
@@ -71,13 +71,11 @@ public class SynsetTypeConverter
 		SynsetType type = null;
 		SynsetType[] types = SynsetType.ALL_TYPES;
 
-		for (int i = 0; i < types.length; i++)
-		{
-			if (typeNumber == types[i].getCode())
-			{
-				type = types[i];
-			}
-		}
+        for (SynsetType type1 : types) {
+            if (typeNumber == type1.getCode()) {
+                type = type1;
+            }
+        }
 		return type;
 	}
 
@@ -90,7 +88,7 @@ public class SynsetTypeConverter
 	 */
 	public static SynsetType getType(char partOfSpeechCode)
 	{
-		SynsetType type = null;
+		SynsetType type;
 
 		switch (partOfSpeechCode)
 		{

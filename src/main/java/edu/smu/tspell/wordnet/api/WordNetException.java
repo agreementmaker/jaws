@@ -22,56 +22,35 @@
   TRADEMARKS OR OTHER RIGHTS.
 
  */
-package edu.smu.tspell.wordnet.impl.file;
-
-import java.util.HashMap;
-import java.util.Map;
+package edu.smu.tspell.wordnet.api;
 
 /**
- * Maintains a mapping between word forms and the positions that it can
- * occupy. Currently these are only used for adjectives.
+ * Generated when a problem occurs accessing the WordNet database.
  * 
  * @author Brett Spell
  */
-public class WordPositions
+public class WordNetException extends RuntimeException
 {
 
 	/**
-	 * Stores mappings between word forms and their specified positions.
+	 * Accepts a message and the original exception.
+	 * 
+	 * @param  message Describes the nature of the problem.
+	 * @param  cause Exception that first indicated that a problem occurred.
 	 */
-	private Map wordMap = new HashMap();
-
-	/**
-	 * No-argument constructor.
-	 */
-	public WordPositions()
+	public WordNetException(String message, Throwable cause)
 	{
+		super(message, cause);
 	}
 
 	/**
-	 * Sets the position for a word.
+	 * Constructor that accepts a message.
 	 * 
-	 * @param  wordForm Word form for which to specify the position.
-	 * @param  position Position in which the word form must occur.
+	 * @param  message Describes the nature of the problem.
 	 */
-	public void setPosition(String wordForm, String position)
+	public WordNetException(String message)
 	{
-		wordMap.put(wordForm, position);
-	}
-
-	/**
-	 * Returns the required position, if any, that the specified adjective
-	 * must occupy relative to a noun it modifies.
-	 * 
-	 * @param  wordForm Word form for which to return the required syntactic
-	 *         position (if one exists).
-	 * @return Syntactic position that the specified word form must occupy
-	 *         or <code>null</code> if there is no requirement on the
-	 *         position in which it must occur.
-	 */
-	public String getRequiredPosition(String wordForm)
-	{
-		return (String)(wordMap.get(wordForm));
+		super(message);
 	}
 
 }

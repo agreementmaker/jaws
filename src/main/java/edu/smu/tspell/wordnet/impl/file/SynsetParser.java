@@ -27,8 +27,8 @@ package edu.smu.tspell.wordnet.impl.file;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import edu.smu.tspell.wordnet.Synset;
-import edu.smu.tspell.wordnet.SynsetType;
+import edu.smu.tspell.wordnet.api.Synset;
+import edu.smu.tspell.wordnet.api.SynsetType;
 
 import edu.smu.tspell.wordnet.impl.ExampleSentences;
 
@@ -67,7 +67,7 @@ public class SynsetParser
 	/**
 	 * Identifies a gloss element as a definition or example sentence.
 	 */
-	private final static String DOUBLE_QUOTE = "\"";;
+	private final static String DOUBLE_QUOTE = "\"";
 
 	/**
 	 * Indicates the start of a syntactic marker for adjective words.
@@ -313,7 +313,7 @@ public class SynsetParser
 		String example;
 
 		String definition = null;
-		ArrayList exampleList = new ArrayList();
+		ArrayList<String> exampleList = new ArrayList<>();
 		StringBuffer buffer = new StringBuffer(glossText.trim());
 		//  Do we have a gloss at all?
 		if (buffer.length() > 0)

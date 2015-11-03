@@ -24,13 +24,13 @@
  */
 package edu.smu.tspell.wordnet.impl.file;
 
-import edu.smu.tspell.wordnet.AdjectiveSynset;
-import edu.smu.tspell.wordnet.NounSynset;
-import edu.smu.tspell.wordnet.Synset;
-import edu.smu.tspell.wordnet.SynsetType;
-import edu.smu.tspell.wordnet.VerbSynset;
-import edu.smu.tspell.wordnet.WordNetException;
-import edu.smu.tspell.wordnet.WordSense;
+import edu.smu.tspell.wordnet.api.AdjectiveSynset;
+import edu.smu.tspell.wordnet.api.NounSynset;
+import edu.smu.tspell.wordnet.api.Synset;
+import edu.smu.tspell.wordnet.api.SynsetType;
+import edu.smu.tspell.wordnet.api.VerbSynset;
+import edu.smu.tspell.wordnet.api.WordNetException;
+import edu.smu.tspell.wordnet.api.WordSense;
 
 import edu.smu.tspell.wordnet.impl.AbstractSynset;
 

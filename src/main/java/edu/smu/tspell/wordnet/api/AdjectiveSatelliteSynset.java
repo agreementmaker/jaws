@@ -22,36 +22,28 @@
   TRADEMARKS OR OTHER RIGHTS.
 
  */
-package edu.smu.tspell.wordnet.impl.file;
+package edu.smu.tspell.wordnet.api;
 
 /**
- * Names of system properties used by the application.
+ * Represents an adjective satellite synset, that is one that is part of a
+ * cluster of similar adjects that are all associated with a single "head"
+ * synset.
  * 
  * @author Brett Spell
+ * @see    <a href="http://wordnet.princeton.edu/5papers.pdf">Five Papers
+ *         on WordNet ("Design and Implementation of the WordNet Lexical
+ *         Database and Searching Software")</a>
  */
-public class PropertyNames
+public interface AdjectiveSatelliteSynset extends AdjectiveSynset
 {
 
 	/**
-	 * No-argument constructor.
+	 * Returns a reference to the head synset.
+	 * 
+	 * @return Reference to the head synset.
+	 * @throws WordNetException An error occurred retrieving data.
+	 * @see    #getSimilar()
 	 */
-	private PropertyNames()
-	{
-	}
-
-	/**
-	 * Identifies the location of the database directory.
-	 */
-	public final static String DATABASE_DIRECTORY = "wordnet.database.dir";
-
-	/**
-	 * Size of the "strong" reference cache of synsets.
-	 */
-	public final static String SYNSET_CACHE_SIZE = "wordnet.cache.synsets";
-
-	/**
-	 * Size of the "strong" reference cache of word forms.
-	 */
-	public final static String WORD_CACHE_SIZE = "wordnet.cache.words";
+	public AdjectiveSynset getHeadSynset() throws WordNetException;
 
 }

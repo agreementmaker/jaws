@@ -26,7 +26,7 @@ package edu.smu.tspell.wordnet.impl.file;
 
 import java.util.StringTokenizer;
 
-import edu.smu.tspell.wordnet.SynsetType;
+import edu.smu.tspell.wordnet.api.SynsetType;
 
 /**
  * Parses text representing a sense key and returns an object that

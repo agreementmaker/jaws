@@ -24,7 +24,7 @@
  */
 package edu.smu.tspell.wordnet.impl.file;
 
-import edu.smu.tspell.wordnet.SynsetType;
+import edu.smu.tspell.wordnet.api.SynsetType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -95,7 +95,7 @@ public class DetachmentRules
 	 * each entry in this map the key is an instance of {@link SynsetType}
 	 * and the corresponding value is a {@link RuleOfDetachment} array.
 	 */
-	private final static Map CATEGORY_RULES = new HashMap();
+	private final static Map<SynsetType, RuleOfDetachment[]> CATEGORY_RULES = new HashMap<>();
 
 	/**
 	 * Singleton instance of this class.
@@ -155,23 +155,21 @@ public class DetachmentRules
 		String suffix;
 		String candidate;
 
-		ArrayList candidateList = new ArrayList();
+		ArrayList<String> candidateList = new ArrayList<>();
 		//  Get the rules of detachment for the specified synset type
 		RuleOfDetachment[] rules = getRulesOfDetachment(type);
 		//  Loop through the rules and try to apply each one
-		for (int i = 0; i < rules.length; i++)
-		{
-			suffix = rules[i].getSuffix();
-			//  We have a new candidate if it ends with current rule's suffix
-			if (inflection.endsWith(suffix))
-			{
-				//  Derive the candidate and add it to our list
-				candidate = inflection.substring(0,
-						inflection.length() - suffix.length()) +
-						rules[i].getEnding();
-				candidateList.add(candidate);
-			}
-		}
+        for (RuleOfDetachment rule : rules) {
+            suffix = rule.getSuffix();
+            //  We have a new candidate if it ends with current rule's suffix
+            if (inflection.endsWith(suffix)) {
+                //  Derive the candidate and add it to our list
+                candidate = inflection.substring(0,
+                        inflection.length() - suffix.length()) +
+                        rule.getEnding();
+                candidateList.add(candidate);
+            }
+        }
 		//  Return the list of candidates in an array
 		String[] candidateArray = new String[candidateList.size()];
 		candidateList.toArray(candidateArray);
@@ -187,7 +185,7 @@ public class DetachmentRules
 	private RuleOfDetachment[] getRulesOfDetachment(SynsetType type)
 	{
 		RuleOfDetachment[] rules =
-				(RuleOfDetachment[])(CATEGORY_RULES.get(type));
+				(CATEGORY_RULES.get(type));
 		return (rules != null ? rules : new RuleOfDetachment[0]);
 	}
 

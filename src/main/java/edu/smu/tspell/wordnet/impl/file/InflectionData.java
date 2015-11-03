@@ -24,7 +24,7 @@
  */
 package edu.smu.tspell.wordnet.impl.file;
 
-import edu.smu.tspell.wordnet.SynsetType;
+import edu.smu.tspell.wordnet.api.SynsetType;
 
 import java.io.BufferedReader;
 import java.io.File;

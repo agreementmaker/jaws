@@ -24,10 +24,10 @@
  */
 package edu.smu.tspell.wordnet.impl.file;
 
-import edu.smu.tspell.wordnet.Synset;
-import edu.smu.tspell.wordnet.SynsetType;
-import edu.smu.tspell.wordnet.WordNetDatabase;
-import edu.smu.tspell.wordnet.WordNetException;
+import edu.smu.tspell.wordnet.api.Synset;
+import edu.smu.tspell.wordnet.api.SynsetType;
+import edu.smu.tspell.wordnet.api.WordNetDatabase;
+import edu.smu.tspell.wordnet.api.WordNetException;
 
 /**
  * Reference implementation of a file-based Java API for WordNet.

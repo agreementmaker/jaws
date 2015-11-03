@@ -24,10 +24,10 @@
  */
 package edu.smu.tspell.wordnet.impl.file.synset;
 
-import edu.smu.tspell.wordnet.AdjectiveSynset;
-import edu.smu.tspell.wordnet.NounSynset;
-import edu.smu.tspell.wordnet.Synset;
-import edu.smu.tspell.wordnet.SynsetType;
+import edu.smu.tspell.wordnet.api.AdjectiveSynset;
+import edu.smu.tspell.wordnet.api.NounSynset;
+import edu.smu.tspell.wordnet.api.Synset;
+import edu.smu.tspell.wordnet.api.SynsetType;
 
 import edu.smu.tspell.wordnet.impl.file.ReferenceSynset;
 import edu.smu.tspell.wordnet.impl.file.RelationshipPointers;
@@ -72,7 +72,7 @@ public class NounReferenceSynset extends ReferenceSynset
 	 */
 	public NounSynset[] getHypernyms() throws RetrievalException
 	{
-		return (NounSynset[])(getNounSynsets(RelationshipType.HYPERNYM));
+		return getNounSynsets(RelationshipType.HYPERNYM);
 	}
 
 	/**

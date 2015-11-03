@@ -22,71 +22,69 @@
   TRADEMARKS OR OTHER RIGHTS.
 
  */
-package edu.smu.tspell.wordnet.impl.file;
-
-import edu.smu.tspell.wordnet.api.SynsetType;
+package edu.smu.tspell.wordnet.api;
 
 /**
- * Defines the location where a synset definition can be found.
+ * Uses a combination of a word form and synset to uniquely identify the
+ * sense of a word. This is primarily used to represent lexical relationships
+ * (that is, relationships that exist between specific word forms within
+ * synsets).
  * 
  * @author Brett Spell
  */
-public class SynsetPointer
+public class WordSense
 {
 
 	/**
-	 * Identifies the synset category, also known as the part of speech that
-	 * the synset is associated with.
+	 * Word form associated with this sense.
 	 */
-	private SynsetType type;
+	private String wordForm;
 
 	/**
-	 * Position within the data file where the synset definition begins.
+	 * Synset that contains the word form.
 	 */
-	private int offset;
+	private Synset synset;
 
 	/**
-	 * Constructor that accepts a synset type and file position.
+	 * Constructor that accepts a synset and word form.
 	 * 
-	 * @param  type Part of speech associated with this synset.
-	 * @param  offset Position within the file where synset definition begins.
+	 * @param  wordForm Word form associated with this sense.
+	 * @param  synset Synset associated with this sense.
 	 */
-	public SynsetPointer(SynsetType type, int offset)
+	public WordSense(String wordForm, Synset synset)
 	{
-		this.type = type;
-		this.offset = offset;
+		this.wordForm = wordForm;
+		this.synset = synset;
 	}
 
 	/**
-	 * Returns the type of synset this pointer is associated with.
+	 * Returns the word form associated with this sense.
 	 * 
-	 * @return Type of synset associated with this pointer.
+	 * @return Word form associated with this sense.
 	 */
-	public SynsetType getType()
+	public String getWordForm()
 	{
-		return type;
+		return wordForm;
 	}
 
 	/**
-	 * Returns the byte position within the appropriate <code>data</code>
-	 * file where the synset definition begins.
+	 * Returns the synset associated with this sense.
 	 * 
-	 * @return Position within the appropriate data file that the synset
-	 *         definition begins.
+	 * @return Synset associated with this sense.
 	 */
-	public int getOffset()
+	public Synset getSynset()
 	{
-		return offset;
+		return synset;
 	}
 
 	/**
 	 * Returns a hash code for the object.
 	 * 
-	 * @return Returns the file position associated with this instance.
+	 * @return Returns the numeric code associated with this instance.
 	 */
 	public int hashCode()
 	{
-		return offset;
+		return wordForm.hashCode();
 	}
 
 	/**
@@ -99,11 +97,11 @@ public class SynsetPointer
 	public boolean equals(Object o)
 	{
 		boolean isEqual = false;
-		if ((o != null) && (o instanceof SynsetPointer))
+		if ((o != null) && (o instanceof WordSense))
 		{
-			SynsetPointer reference = (SynsetPointer)o;
-			isEqual = ((this.getOffset() == reference.getOffset()) &&
-					(this.getType().equals(reference.getType())));
+			WordSense target = (WordSense)o;
+			isEqual = ((this.getWordForm().equals(target.getWordForm())) &&
+					(getSynset().equals(target.getSynset())));
 		}
 		return isEqual;
 	}
@@ -115,7 +113,7 @@ public class SynsetPointer
 	 */
 	public String toString()
 	{
-		return getType().toString() + "@" + getOffset();
+		return "'" + getWordForm() + "' in " + getSynset().toString();
 	}
 
 }

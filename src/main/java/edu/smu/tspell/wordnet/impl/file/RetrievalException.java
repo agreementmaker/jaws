@@ -24,7 +24,7 @@
  */
 package edu.smu.tspell.wordnet.impl.file;
 
-import edu.smu.tspell.wordnet.WordNetException;
+import edu.smu.tspell.wordnet.api.WordNetException;
 
 /**
  * Generated when a problem occurs retrieving data from the WordNet database.

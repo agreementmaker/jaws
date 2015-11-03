@@ -24,8 +24,8 @@
  */
 package edu.smu.tspell.wordnet.impl;
 
-import edu.smu.tspell.wordnet.Synset;
-import edu.smu.tspell.wordnet.SynsetType;
+import edu.smu.tspell.wordnet.api.Synset;
+import edu.smu.tspell.wordnet.api.SynsetType;
 
 /**
  * An abstract Synset implementation. This provides encapsulation of some

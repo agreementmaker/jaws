@@ -26,7 +26,7 @@ package edu.smu.tspell.wordnet.impl.file;
 
 import java.util.Map;
 
-import edu.smu.tspell.wordnet.SynsetType;
+import edu.smu.tspell.wordnet.api.SynsetType;
 
 /**
  * Maintains a collection of generic sentence frames that are associated with

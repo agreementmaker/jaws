@@ -22,45 +22,15 @@
   TRADEMARKS OR OTHER RIGHTS.
 
  */
-package edu.smu.tspell.wordnet.impl.file.synset;
-
-import edu.smu.tspell.wordnet.api.AdverbSynset;
-import edu.smu.tspell.wordnet.api.SynsetType;
-import edu.smu.tspell.wordnet.api.WordNetException;
-import edu.smu.tspell.wordnet.api.WordSense;
-
-import edu.smu.tspell.wordnet.impl.file.ReferenceSynset;
-import edu.smu.tspell.wordnet.impl.file.RelationshipPointers;
-import edu.smu.tspell.wordnet.impl.file.RelationshipType;
-import edu.smu.tspell.wordnet.impl.file.RetrievalException;
-import edu.smu.tspell.wordnet.impl.file.SenseKey;
+package edu.smu.tspell.wordnet.api;
 
 /**
- * Reference implementation of an adverb synset.
+ * Represents a synset that corresponds to an adverb meaning.
  * 
  * @author Brett Spell
  */
-public class AdverbReferenceSynset extends ReferenceSynset
-		implements AdverbSynset
+public interface AdverbSynset extends Synset
 {
-
-	/**
-	 * Constructor that accepts adverb synset properties.
-	 * 
-	 * @param  definition Short description / definition of the meaning.
-	 * @param  examples Examples of how the synset is used.
-	 * @param  senseKeys Keys of word senses associated with this synset.
-	 * @param  pointers Pointers to unresolved relationships.
-	 * @param  lexFile Lexical file that contains the synset.
-	 * @param  offset Byte offset into the data file where synset is defined.
-	 */
-	public AdverbReferenceSynset(String definition, String[] examples,
-			SenseKey[] senseKeys, RelationshipPointers pointers,
-			int lexFile, int offset)
-	{
-		super(SynsetType.ADVERB, definition, examples, senseKeys,
-				pointers, lexFile, offset);
-	}
 
 	/**
 	 * Returns the pertainyms (adjectives from which this adverb was derived),
@@ -72,9 +42,30 @@ public class AdverbReferenceSynset extends ReferenceSynset
 	 * @return The pertainyms of this synset.
 	 * @throws WordNetException An error occurred retrieving data.
 	 */
-	public WordSense[] getPertainyms(String wordForm) throws RetrievalException
-	{
-		return getReferences(RelationshipType.PERTAINYM, wordForm);
-	}
+	public WordSense[] getPertainyms(String wordForm) throws WordNetException;
+
+	/**
+	 * Identifies the topics with which this synset is associated.
+	 * 
+	 * @return Topics / subjects associated with this synset.
+	 * @throws WordNetException An error occurred retrieving data.
+	 */
+	public NounSynset[] getTopics() throws WordNetException;
+
+	/**
+	 * Identifies the regions with which this synset is associated.
+	 * 
+	 * @return Regions associated with this synset.
+	 * @throws WordNetException An error occurred retrieving data.
+	 */
+	public NounSynset[] getRegions() throws WordNetException;
+
+	/**
+	 * Identifies the usage types associated with this synset.
+	 * 
+	 * @return Usage types associated with this synset.
+	 * @throws WordNetException An error occurred retrieving data.
+	 */
+	public NounSynset[] getUsages() throws WordNetException;
 
 }

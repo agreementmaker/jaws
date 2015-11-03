@@ -24,7 +24,7 @@
  */
 package edu.smu.tspell.wordnet.impl.file;
 
-import edu.smu.tspell.wordnet.WordNetException;
+import edu.smu.tspell.wordnet.api.WordNetException;
 
 /**
  * Used to indicate that an error occurred parsing data in one of the

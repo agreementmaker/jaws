@@ -24,7 +24,7 @@
  */
 package edu.smu.tspell.wordnet.impl.file;
 
-import edu.smu.tspell.wordnet.SynsetType;
+import edu.smu.tspell.wordnet.api.SynsetType;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -55,7 +55,7 @@ public abstract class SampleSentenceData
 	 * entry in this map the key is an instance of {@link SynsetType} and the
 	 * corresponding value is a {@link Map}.
 	 */
-	private Map typeMaps = new HashMap();
+	private Map<SynsetType, Map<String, String>> typeMaps = new HashMap<>();
 
 	/**
 	 * Maps synset types to their corresponding file names.
@@ -95,7 +95,7 @@ public abstract class SampleSentenceData
 	private synchronized Map getSubMap(SynsetType type)
 			throws RetrievalException
 	{
-		Map subMap;
+		Map<String, String> subMap;
 		if (!typeMaps.containsKey(type))
 		{
 			subMap = loadData(type);
@@ -103,7 +103,7 @@ public abstract class SampleSentenceData
 		}
 		else
 		{
-			subMap = (Map)(typeMaps.get(type));
+			subMap = typeMaps.get(type);
 		}
 		return subMap;
 	}
@@ -116,9 +116,9 @@ public abstract class SampleSentenceData
 	 *         values available for the specified synset type.
 	 * @throws RetrievalException An error occurred reading the frame text file.
 	 */
-	private Map loadData(SynsetType type) throws RetrievalException
+	private Map<String, String> loadData(SynsetType type) throws RetrievalException
 	{
-		Map subMap = null;
+		Map<String, String> subMap = null;
 		String fileName = getFileName(type);
 		if (fileName != null)
 		{
@@ -192,14 +192,14 @@ public abstract class SampleSentenceData
 	 * @return Map that encapsulates the data read.
 	 * @throws IOException An error occurred reading the file.
 	 */
-	private Map createMap(String fileName) throws IOException
+	private Map<String, String> createMap(String fileName) throws IOException
 	{
 		int index;
 		String key;
 		String value;
 
 		//  Create a map to hold the results
-		Map keySentences = new HashMap();
+		Map<String, String> keySentences = new HashMap<>();
 		//  Open the file and start reading it
 		File file = new File(System.getProperty(
 				PropertyNames.DATABASE_DIRECTORY, "."), fileName);
@@ -228,7 +228,7 @@ public abstract class SampleSentenceData
 	 * @param  key Key to use when storing the entry.
 	 * @param  value Value to store in the map.
 	 */
-	protected void putKeyValuePair(Map map, String key, String value)
+	protected void putKeyValuePair(Map<String, String> map, String key, String value)
 	{
 		map.put(key, value);
 	}
