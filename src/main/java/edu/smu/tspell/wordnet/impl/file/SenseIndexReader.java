@@ -52,7 +52,7 @@ public class SenseIndexReader extends MultipleLineLocator
 	/**
 	 * Reference to the singleton instance of this class.
 	 */
-	private static WeakReference reference;
+	private static WeakReference<SenseIndexReader> reference;
 
 	/**
 	 * Used to parse lines read from the sense index file.
@@ -72,7 +72,7 @@ public class SenseIndexReader extends MultipleLineLocator
 		//  See if there's one we can get to through the weak reference
 		if (reference != null)
 		{
-			instance = (SenseIndexReader)(reference.get());
+			instance = reference.get();
 		}
 		//  It was either garbage collected or never created in the first place
 		if (instance == null)
@@ -81,7 +81,7 @@ public class SenseIndexReader extends MultipleLineLocator
 			try
 			{
 				instance = new SenseIndexReader();
-				reference = new WeakReference(instance);
+				reference = new WeakReference<>(instance);
 			}
 			catch (IOException ioe)
 			{
