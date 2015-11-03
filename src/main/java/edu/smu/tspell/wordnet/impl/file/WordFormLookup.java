@@ -75,7 +75,7 @@ public class WordFormLookup
 	/**
 	 * Map in which the retrieved data is cached.
 	 */
-	private Map wordCategories = new WeakHashMap();
+	private Map<String, Map<SynsetType, List<Synset>>> wordCategories = new WeakHashMap<>();
 
 	/**
 	 * Maintains "strong" references to the word forms to ensure that they
@@ -164,40 +164,33 @@ public class WordFormLookup
 		String[] candidates;
 
 		//  Create the list that will hold the results
-		List synsetList = new ArrayList();
+		List<Synset> synsetList = new ArrayList<>();
 		//  Loop through the synset types
-		for (int i = 0; i < types.length; i++)
-		{
-			//  Get all synsets for the current type
-			synsetArray = getSynsets(wordForm, types[i]);
-			for (int j = 0; j < synsetArray.length; j++)
-			{
-				//  Add (non-duplicate) synsets to the list
-				if (!synsetList.contains(synsetArray[j]))
-				{
-					synsetList.add(synsetArray[j]);
-				}
-			}
-			//  Does caller also want synsets containing base form candidates?
-			if (useMorphology)
-			{
-				//  Find possible base forms and loop through each one
-				candidates = getBaseFormCandidates(wordForm, types[i]);
-				for (int j = 0; j < candidates.length; j++)
-				{
-					//  Get synsets for the candidate and loop through them
-					synsetArray = getSynsets(candidates[j], types[i]);
-					for (int k = 0; k < synsetArray.length; k++)
-					{
-						//  Add (non-duplicate) synsets to the list
-						if (!synsetList.contains(synsetArray[k]))
-						{
-							synsetList.add(synsetArray[k]);
-						}
-					}
-				}
-			}
-		}
+        for (SynsetType type : types) {
+            //  Get all synsets for the current type
+            synsetArray = getSynsets(wordForm, type);
+            for (Synset aSynsetArray : synsetArray) {
+                //  Add (non-duplicate) synsets to the list
+                if (!synsetList.contains(aSynsetArray)) {
+                    synsetList.add(aSynsetArray);
+                }
+            }
+            //  Does caller also want synsets containing base form candidates?
+            if (useMorphology) {
+                //  Find possible base forms and loop through each one
+                candidates = getBaseFormCandidates(wordForm, type);
+                for (String candidate : candidates) {
+                    //  Get synsets for the candidate and loop through them
+                    synsetArray = getSynsets(candidate, type);
+                    for (Synset aSynsetArray : synsetArray) {
+                        //  Add (non-duplicate) synsets to the list
+                        if (!synsetList.contains(aSynsetArray)) {
+                            synsetList.add(aSynsetArray);
+                        }
+                    }
+                }
+            }
+        }
 		//  Convert the list to an array and return it
 		synsetArray = new Synset[synsetList.size()];
 		synsetList.toArray(synsetArray);
@@ -221,9 +214,9 @@ public class WordFormLookup
 		int count;
 
 		//  Create a list to hold the synsets we'll return
-		List synsetList = new ArrayList();
+		List<Synset> synsetList = new ArrayList<>();
 		//  Get the map that contains a List per synset type
-		Map subMap = (Map)(wordCategories.get(wordForm));
+		Map<SynsetType, List<Synset>> subMap = wordCategories.get(wordForm);
 		//  If there isn't already one, load them now
 		if (subMap == null)
 		{
@@ -232,7 +225,7 @@ public class WordFormLookup
 			cache.put(wordForm, wordForm);
 		}
 		//  Get the synsets for this type
-		List typeList = (List)(subMap.get(type));
+		List<Synset> typeList = subMap.get(type);
 		//  If there are some, add them to the list
 		if (typeList != null)
 		{
@@ -261,14 +254,12 @@ public class WordFormLookup
 	 * @param  wordForm Word form for which to return synsets.
 	 * @return Newly created map containing the synset entries for the word.
 	 */
-	private Map loadSynsets(String wordForm) throws WordNetException
+	private Map<SynsetType, List<Synset>> loadSynsets(String wordForm) throws WordNetException
 	{
-		Synset synset;
-		SynsetType type;
-		List categoryList;
+		List<Synset> categoryList;
 
 		//  Create a new entry for the word form in the map
-		Map subMap = new TreeMap();
+		Map<SynsetType, List<Synset>> subMap = new TreeMap<>();
 		//  Read lines from the sense index that correspond to the word form
 		SenseIndexReader reader = SenseIndexReader.getInstance();
 		SenseIndexEntry[] indexEntries = reader.getLemmaEntries(wordForm);
@@ -276,21 +267,19 @@ public class WordFormLookup
 
 		SynsetFactory factory = SynsetFactory.getInstance();
 		//  Loop through the list of index entries
-		for (int i = 0; i < indexEntries.length; i++)
-		{
-			synset = factory.getSynset(indexEntries[i].getSynsetPointer());
-			type = synset.getType();
-			//  Also add the new synset to our cache
-			categoryList = (List)(subMap.get(type));
-			//  If this is the first one, create a new list and store it
-			if (categoryList == null)
-			{
-				categoryList = new ArrayList();
-				subMap.put(type, categoryList);
-			}
-			//  Add current synset to the list for its type
-			categoryList.add(synset);
-		}
+        for (SenseIndexEntry indexEntry : indexEntries) {
+            Synset synset = factory.getSynset(indexEntry.getSynsetPointer());
+            SynsetType type = synset.getType();
+            //  Also add the new synset to our cache
+            categoryList = subMap.get(type);
+            //  If this is the first one, create a new list and store it
+            if (categoryList == null) {
+                categoryList = new ArrayList<>();
+                subMap.put(type, categoryList);
+            }
+            //  Add current synset to the list for its type
+            categoryList.add(synset);
+        }
 		return subMap;
 	}
 
