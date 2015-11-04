@@ -55,7 +55,7 @@ public class ExampleSentences
 	 * @see    <a href="http://wordnet.princeton.edu/man/wninput.5WN#sect4">
 	 *         Format of Lexicographer Files ("Verb Frames")</a>
 	 */
-	private Map wordFrames = new HashMap();
+	private Map<String, List<String>> wordFrames = new HashMap<>();
 
 	/**
 	 * Mapping of word forms to their associated templates. For each entry in
@@ -64,7 +64,7 @@ public class ExampleSentences
 	 * are associated with the word form.
 	 * 
 	 */
-	private Map senseTemplates = new HashMap();
+	private Map<String, String[]> senseTemplates = new HashMap<>();
 
 	/**
 	 * No-argument constructor.
@@ -94,10 +94,10 @@ public class ExampleSentences
 	 */
 	public void addFrame(String frameText, String wordForm)
 	{
-		List frameList = (List)(wordFrames.get(wordForm));
+		List<String> frameList = wordFrames.get(wordForm);
 		if (frameList == null)
 		{
-			frameList = new ArrayList();
+			frameList = new ArrayList<>();
 			wordFrames.put(wordForm, frameList);
 		}
 		frameList.add(frameText);
@@ -125,7 +125,7 @@ public class ExampleSentences
 	public String[] getFormattedTemplates(String wordForm)
 	{
 		Object[] arguments = new Object[] {wordForm};
-		String[] templates = (String[])(senseTemplates.get(wordForm));
+		String[] templates = senseTemplates.get(wordForm);
 		for (int i = 0; i < templates.length; i++)
 		{
 			templates[i] = MessageFormat.format(templates[i], arguments);
@@ -154,7 +154,7 @@ public class ExampleSentences
 	public String[] getFrames(String wordForm)
 	{
 		String[] frames = null;
-		List frameList = (List)(wordFrames.get(wordForm));
+		List<String> frameList = wordFrames.get(wordForm);
 		if (frameList != null)
 		{
 			frames = new String[frameList.size()];
