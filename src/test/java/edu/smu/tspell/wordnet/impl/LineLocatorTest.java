@@ -1,9 +1,9 @@
 package edu.smu.tspell.wordnet.impl;
 
+import edu.smu.tspell.wordnet.TestUtil;
 import org.junit.Test;
 
 import java.io.File;
-import java.net.URL;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -14,9 +14,7 @@ public class LineLocatorTest {
     private LineLocator locator;
 
     public void setUp(String file) throws Exception {
-        URL fileUrl = Thread.currentThread().getContextClassLoader().getResource(file);
-        assert fileUrl != null;
-        sampleFile = new File(fileUrl.toURI());
+        sampleFile = TestUtil.fileFromClasspath(file);
         locator = new LineLocator(sampleFile);
     }
 

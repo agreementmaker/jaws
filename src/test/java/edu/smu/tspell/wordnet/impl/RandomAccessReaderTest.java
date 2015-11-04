@@ -1,5 +1,6 @@
 package edu.smu.tspell.wordnet.impl;
 
+import edu.smu.tspell.wordnet.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -23,9 +23,7 @@ public class RandomAccessReaderTest {
 
     @Before
     public void setUp() throws IOException, URISyntaxException {
-        URL fileUrl = Thread.currentThread().getContextClassLoader().getResource("sample_file.txt");
-        assert fileUrl != null;
-        sampleFile = new File(fileUrl.toURI());
+        sampleFile = TestUtil.fileFromClasspath("sample_file.txt");
         reader = new RandomAccessReader(sampleFile) {};
     }
 
@@ -115,9 +113,6 @@ public class RandomAccessReaderTest {
 
     @Test
     public void finalize_with_null_accessor() throws Throwable {
-        URL fileUrl = Thread.currentThread().getContextClassLoader().getResource("sample_file.txt");
-        assert fileUrl != null;
-        File sampleFile = new File(fileUrl.toURI());
         MaliciousSubclass subClass = new MaliciousSubclass(sampleFile);
         //noinspection FinalizeCalledExplicitly
         subClass.finalize();
