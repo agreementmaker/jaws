@@ -211,7 +211,7 @@ public class LineLocator extends RandomAccessReader {
 	{
 		char priorChar;
 
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 		while (position > 0)
 		{
 			seek(--position);
