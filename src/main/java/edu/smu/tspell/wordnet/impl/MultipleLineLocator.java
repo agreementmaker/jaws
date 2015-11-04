@@ -45,8 +45,17 @@ public abstract class MultipleLineLocator extends LineLocator {
 	 */
 	public MultipleLineLocator(String parent, String child) throws IOException
 	{
-		super(new File(parent, child));
+		this(new File(parent, child));
 	}
+
+    /**
+     * Constructor that takes a File object.
+     * @param file Read lines from this file.
+     * @throws IOException thrown by the super class
+     */
+    protected MultipleLineLocator(File file) throws IOException {
+        super(file);
+    }
 
 	/**
 	 * Returns all lines in the file that begin with the specified prefix.
