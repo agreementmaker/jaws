@@ -1,0 +1,4 @@
+This is a simple test file.
+Contains some test lines.
+And a third line.
+And a fourth.
