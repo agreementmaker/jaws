@@ -218,6 +218,7 @@ public class LineLocator extends RandomAccessReader {
 			priorChar = readNextCharacter();
 			if (priorChar != LINE_SEPARATOR)
 			{
+                seek(position);
 				buffer.insert(0, priorChar);
 			}
 			else

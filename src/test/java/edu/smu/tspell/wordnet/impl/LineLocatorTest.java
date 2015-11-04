@@ -19,10 +19,11 @@ public class LineLocatorTest {
     }
 
     @Test
-    public void finds_first_line() throws Exception {
+    public void finds_first_line_and_after_that() throws Exception {
         setUp("linelocator/somewords.txt");
         assertThat(locator.getLine("a"), is(equalTo("abacus")));
-        assertThat(locator.getFilePointer(), is(8l));
+        assertThat(locator.getFilePointer(), is(7l));
+        assertThat(locator.readToNextEndOfLine(), is(equalTo("bear")));
     }
 
     @Test
@@ -30,6 +31,14 @@ public class LineLocatorTest {
         setUp("linelocator/somewords.txt");
         assertThat(locator.getLine("zo"), is(equalTo("zoo")));
         assertThat(locator.getFilePointer(), is(locator.getFileSize()));
+    }
+
+    @Test
+    public void finds_penultimate_line() throws Exception {
+        setUp("linelocator/somewords.txt");
+        assertThat(locator.getLine("ze"), is(equalTo("zebra")));
+        assertThat(locator.getFilePointer(), is(43l));
+        assertThat(locator.readToNextEndOfLine(), is(equalTo("zoo")));
     }
 
     @Test
