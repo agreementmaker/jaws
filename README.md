@@ -4,7 +4,7 @@
 
 # Java API for WordNet Searching (JAWS)
 
-JAWS is an API that provides Java applications the ability to access Wordnet. It is a simple and fast API that is compatible with both the 2.1 and 3.0 versions of the WordNet database files.
+JAWS is an API that provides Java applications the ability to access WordNet. It is a simple and fast API that is compatible with both the 2.1 and 3.0 versions of the WordNet database files.
 
 To use JAWS in your application you must do the following:
 * Obtain a copy of the [WordNet database files](https://wordnet.princeton.edu/wordnet/download/current-version/).  Executing `mvn generate-test-resources` will download WordNet 3.0 into the `target/` directory.
@@ -18,7 +18,7 @@ For an example, see the [WordNetDatabaseTest](https://github.com/agreementmaker/
 
 JAWS was developed by Brett Spell as a class project in CSE 8337 in Spring 2007, as part of the [SMU Database Research Group](http://lyle.smu.edu/cse/dbgroup/data.htm).  Brett Spell is an adjunct member of the faculty in the [Computer Science and Engineering (CSE) department](http://lyle.smu.edu/computer/people_adjunct.php) at Southern Methodist University.
 
-This repository is based on the original [JAWS 1.3 source code](http://lyle.smu.edu/~tspell/jaws/#downloads). 
+This repository is based on the original [JAWS 1.3 source code](http://lyle.smu.edu/~tspell/jaws/#downloads) (it's the first commit to this repository, ebf3c29f81b2456015cfcf6c2be312ce171bd0f8). 
 
 ## References
 
