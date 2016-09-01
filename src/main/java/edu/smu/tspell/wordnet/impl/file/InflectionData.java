@@ -86,7 +86,7 @@ public class InflectionData
 	 * each entry is a synset type and the corresponding value is an array
 	 * of strings representing the base forms for that type.
 	 */
-	private Map inflectionMaps = new HashMap();
+	private Map<String, Map<SynsetType, String[]>> inflectionMaps = new HashMap<>();
 
 	/**
 	 * Returns a reference to the singleton instance of this class.
@@ -198,7 +198,7 @@ public class InflectionData
 	private void putMorphology(String inflection, String[] baseForms,
 			SynsetType type)
 	{
-		Map subMap = getSubMap(inflection, true);
+		Map<SynsetType, String[]> subMap = getSubMap(inflection, true);
 		subMap.put(type, baseForms);
 	}
 
@@ -234,13 +234,13 @@ public class InflectionData
 	 *         existed and the caller indicated that one should be created.
 	 *         Otherwise returns <code>null</code>.
 	 */
-	private Map getSubMap(String inflection, boolean shouldCreate)
+	private Map<SynsetType, String[]> getSubMap(String inflection, boolean shouldCreate)
 	{
 		String wordForm = inflection.toLowerCase();
-		Map subMap = (Map)(inflectionMaps.get(wordForm));
+		Map<SynsetType, String[]> subMap = inflectionMaps.get(wordForm);
 		if ((subMap == null) && (shouldCreate))
 		{
-			subMap = new TreeMap();
+			subMap = new TreeMap<>();
 			inflectionMaps.put(wordForm, subMap);
 		}
 		return subMap;
