@@ -20,6 +20,12 @@
         </license>
     </licenses>
 
+    <distributionManagement>
+        <repository>
+            <id>ssh-repository</id>
+            <url>scpexe://onawh.im/maven</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <plugins>
@@ -71,6 +77,13 @@
                 </executions>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>3.0.0</version>
+            </extension>
+        </extensions>
     </build>
 
     <dependencies>
