@@ -16,14 +16,12 @@ For an example, see the [WordNetDatabaseTest](https://github.com/agreementmaker/
 
 ## History
 
-JAWS was developed by Brett Spell as a class project in CSE 8337 in Spring 2007, as part of the [SMU Database Research Group](http://lyle.smu.edu/cse/dbgroup/data.htm).  Brett Spell is an adjunct member of the faculty in the [Computer Science and Engineering (CSE) department](http://lyle.smu.edu/computer/people_adjunct.php) at Southern Methodist University.
+JAWS was developed by Terrill Brett Spell as a class project in CSE 8337 in Spring 2007, as part of the SMU Database Research Group.  Brett Spell was an adjunct member of the faculty in the Computer Science and Engineering (CSE) department at Southern Methodist University.
 
 This repository is based on the original [JAWS 1.3 source code](http://lyle.smu.edu/~tspell/jaws/#downloads) (it's the [first commit](https://github.com/agreementmaker/jaws/commit/ebf3c29f81b2456015cfcf6c2be312ce171bd0f8) to this repository). 
 
 ## References
 
-* http://del.icio.us/url/49235d589448f326cade6b3812ba9f07
-* http://blog.intelligencecomputing.io/twitter/2750/java-api-for-wordnet-searching-jaws
 * http://stackoverflow.com/questions/5976537/wordnet-similarity-in-java-jaws-jwnl-or-java-wnsimilarity
 
 ## Other JAWS repositories on GitHub
