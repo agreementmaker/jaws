@@ -20,6 +20,29 @@ JAWS was developed by Terrill Brett Spell as a class project in CSE 8337 in Spri
 
 This repository is based on the original [JAWS 1.3 source code](http://lyle.smu.edu/~tspell/jaws/#downloads) (it's the [first commit](https://github.com/agreementmaker/jaws/commit/ebf3c29f81b2456015cfcf6c2be312ce171bd0f8) to this repository). 
 
+## Building with Maven
+
+This project uses the [Maven Toolchains Plugin](https://maven.apache.org/guides/mini/guide-using-toolchains.html).  You should put the following in your `~/.m2/toolchains.xml` file:
+
+```
+<?xml version="1.0" encoding="UTF8"?>
+<toolchains>
+  <!-- JDK toolchains -->
+  <toolchain>
+    <type>jdk</type>
+    <provides>
+      <version>1.9</version>
+      <vendor>openjdk</vendor>
+    </provides>
+    <configuration>
+      <jdkHome>/path/to/jdk9</jdkHome>
+    </configuration>
+  </toolchain>
+</toolchains>
+```
+
+Make sure to replace `/path/to/jdk9` with the actual path to a JDK 9 or later.
+
 ## References
 
 * http://stackoverflow.com/questions/5976537/wordnet-similarity-in-java-jaws-jwnl-or-java-wnsimilarity
