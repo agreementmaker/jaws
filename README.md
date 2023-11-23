@@ -22,7 +22,7 @@ This repository is based on the original [JAWS 1.3 source code](http://lyle.smu.
 
 ## Building with Maven
 
-This project uses the [Maven Toolchains Plugin](https://maven.apache.org/guides/mini/guide-using-toolchains.html).  To setup a JDK toolchain, you can start by downloading a JDK from [Adoptium](https://adoptium.net).  The current long-term support (LTS) release for the JDK is `21`.  Extract the JDK to a directory on your computer, which we reference as `/path/to/jdk21`.  Finally, put the following in your `~/.m2/toolchains.xml` file:
+This project uses the [Maven Toolchains Plugin](https://maven.apache.org/guides/mini/guide-using-toolchains.html).  To setup a JDK toolchain, you can start by downloading a JDK from [Adoptium](https://adoptium.net).  The long-term support (LTS) release for the JDK is `21`, as of Nov 2023.  Extract the JDK to a directory on your computer, which we reference as `/path/to/jdk21`.  Finally, put the following in your `~/.m2/toolchains.xml` file:
 
 ```
 <?xml version="1.0" encoding="UTF8"?>
